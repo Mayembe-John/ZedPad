@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZedPad - Fashion Without Borders</title>
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            flex: 1;
+        }
+        
+        /* Newspaper-style header */
+        .newspaper-header {
+            text-align: center;
+            border-bottom: 3px double #333;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .newspaper-title {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin: 20px 0 10px;
+            text-transform: uppercase;
+        }
+        
+        .date-line {
+            font-style: italic;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        /* Article styling */
+        .headline {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 3.5rem;
+            text-align: center;
+            margin: 30px 0 20px;
+            line-height: 1.2;
+        }
+        
+        .subhead {
+            font-family: 'Georgia', serif;
+            font-size: 1.8rem;
+            text-align: center;
+            font-weight: normal;
+            margin-bottom: 40px;
+            color: #666;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+        }
+        
+        .byline {
+            font-style: italic;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .article-content {
+            column-count: 2;
+            column-gap: 40px;
+            text-align: justify;
+            margin-bottom: 40px;
+        }
+        
+        .article-content p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .pull-quote {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 1.8rem;
+            line-height: 1.4;
+            padding: 20px;
+            margin: 30px 0;
+            border-left: 3px solid #333;
+            background-color: #f0f0f0;
+            column-span: all;
+        }
+        
+        /* Image styling */
+        .article-image {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .article-image img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            padding: 5px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .image-caption {
+            font-style: italic;
+            margin-top: 10px;
+            font-size: 0.95rem;
+            color: #666;
+        }
+        
+        /* Footer */
+        .article-footer {
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+            margin-top: 40px;
+            font-style: italic;
+            text-align: center;
+        }
+        
+        /* Related stories */
+        .related-stories {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #ccc;
+        }
+        
+        .related-heading {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .story-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .story-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .story-card h3 {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+        
+        .story-card p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .read-more {
+            display: inline-block;
+            color: #8b0000;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .read-more:hover {
+            text-decoration: underline;
+        }
+        
+        /* Site Footer */
+        .site-footer {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-section h3 {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #d4af37;
+        }
+        
+        .footer-section p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .footer-contact span {
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .footer-social a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-social a:hover {
+            color: #d4af37;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #444;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .newspaper-title {
+                font-size: 3.5rem;
+            }
+            
+            .headline {
+                font-size: 2.5rem;
+            }
+            
+            .subhead {
+                font-size: 1.4rem;
+            }
+            
+            .article-content {
+                column-count: 1;
+            }
+            
+            .story-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="newspaper-header">
+            <div class="newspaper-title">ZedPad</div>
+            <div class="date-line">Monday, February 3, 2025</div>
+        </header>
+        
+        <article>
+            <h1 class="headline">OCTOGENARIAN SENSATION: How a Zambian Grandmother Became an Unlikely Fashion Icon</h1>
+            <h2 class="subhead">A playful clothing swap between generations sparks a global style movement and redefines aging</h2>
+            
+            <div class="byline">By John Mayembe | Fashion Correspondent</div>
+            
+            <div class="article-image">
+                <!-- Image space 1 -->
+                <img src="images/Margret Chola/3336.avif" alt="Margret Chola in vibrant fashion">
+                <div class="image-caption"></div>
+            </div>
+            
+            <div class="article-content">
+                <p>In the quiet village of Mungule, just north of Zambia's capital Lusaka, an octogenarian grandmother has shattered conventions and captured the world's imagination through an unexpected medium: high fashion.</p>
+                
+                <p>Margret Chola, in her mid-80s, has become an international style phenomenon after participating in what began as a lighthearted clothing exchange with her New York-based granddaughter, Diana Kaumba. The resulting photographs—featuring Chola in everything from streetwear to glamorous gowns—have sparked a global conversation about age, style, and self-expression.</p>
+
+                <p>The transformation began when Kaumba, a professional stylist, visited Zambia in March 2023 to commemorate the anniversary of her father's passing. On a whim, she persuaded her grandmother to try on some contemporary outfits. The initial photos received little attention, but when Kaumba shared additional images a year later, the internet took notice.</p>
+                
+                <div class="article-image">
+                    <!-- Image space 2 -->
+                    <img src="images/Margret Chola/a4f35c40-a2b4-11ef-bdf5-b7cb2fa86e10.jpg" alt="Margret Chola in colorful ensemble">
+                </div>
+                
+                
+                
+                <div class="pull-quote">"People were like, 'Oh my God, who is this? This is what we needed.'"</div>
+                
+                <p>The now-iconic image that launched the phenomenon features Chola sporting a red Adidas tracksuit, strappy high heels paired with blue Adidas socks and gloves, chunky sunglasses, gold chains, and a crown. Kaumba posted the image to her Instagram with trepidation, fearing criticism for accessorizing her grandmother so lavishly.</p>
+                
+                <p>Her concerns proved unfounded. Within minutes, the post garnered thousands of likes and hundreds of comments celebrating Chola's unexpected style. The overwhelming response prompted Kaumba to establish a dedicated Instagram account titled "Legendary Glamma," which has since amassed over 140,000 followers including celebrities like Rihanna, Jennifer Hudson, and Viola Davis.</p>
+                
+                <div class="article-image">
+                    <!-- Image space 3 -->
+                    <img src="images/Margret Chola/1631.avif" alt="Margret Chola in color-block outfit">
+                    <div class="image-caption"></div>
+                </div>
+                
+                <p>Chola's fashion repertoire has expanded to include silver platform shoes, baggy jeans with T-shirts featuring her own image, black biker boots, and creative ensembles incorporating the colors of the Zambian flag. Each outfit is meticulously accessorized and photographed against the backdrop of the family farm in Mungule, creating a striking contrast between rural life and high fashion.</p>
+                
+                <p>The project represents a full-circle moment for Kaumba, who inherited her passion for fashion from her diplomat father. When he was assigned to New York, the then-20-year-old Kaumba accompanied him and found inspiration in the glossy fashion magazines of the city.</p>
+                
+                <div class="article-image">
+                    <!-- Image space 4 -->
+                    <img src="images/Margret Chola/1926.avif" alt="Margret Chola in olive suit">
+                    <div class="image-caption"></div>
+                </div>
+                
+                <p>Despite international acclaim, the initial reception in Zambia was less enthusiastic. "People really judged me and they were laughing at me in Zambia," Kaumba recalls. "They asked, 'Why would you do that to your grandmother? Why can't you just leave her alone?'"</p>
+                
+                <p>This skepticism faded as international media—including features on BBC and American talk shows—brought positive attention to the project. Zambians gradually embraced their unexpected fashion ambassador, sharing her images widely across social media platforms.</p>
+                
+                <div class="pull-quote">"She told me it has given her a second chance at life."</div>
+                
+                <p>The "Legendary Glamma" series has done more than entertain—it has challenged perceptions of aging in Zambia and beyond. In a society where older people are often marginalized and expected to conform to conservative dress codes, Chola's bold fashion choices have become a symbol of liberation.</p>
+                
+                <div class="article-image">
+                    <!-- Image space 5 -->
+                    <img src="images/Margret Chola/4480 (2).avif" alt="Margret Chola being styled">
+                    <div class="image-caption">Margret Chola wearing baggy jeans and an embroidered top, being styled by her granddaughter Diana Kaumba</div>
+                </div>
+                
+                <p>Kaumba, who cites late New York style icon Iris Apfel as inspiration, has received messages from women in their sixties who say the project has inspired them to "live again." Followers worldwide have shared photographs of their own grandparents, creating an unexpected movement celebrating style at every age.</p>
+                
+                <p>For Chola, the project has been transformative on a personal level. According to Kaumba, the experience has given her grandmother "a second chance at life," replacing conversations about physical pains with excitement about upcoming photo sessions.</p>
+                
+                <div class="article-image">
+                    <!-- Image space 6 -->
+                    <img src="images/Margret Chola/4480 (1).avif" alt="Margret Chola in sequinned top">
+                    <div class="image-caption">Margret Chola wearing an olive suit, heels and sunglasses</div>
+                </div>
+                
+                <p>This renewal is particularly meaningful given Chola's difficult life story. Forced to leave school at age 12 for economic reasons, she was married to a man in his thirties, bore six children, and struggled with alcoholism before eventually escaping the marriage. She later lost a son at age sixteen.</p>
+                
+                <p>Today, Chola lives with Kaumba's mother and has become the central focus of Kaumba's creative work when she returns to Zambia. The "Legendary Glamma" series continues to captivate audiences with its unpredictability—one day featuring chains and crowns, the next showcasing tailored suits and ties.</p>
+                
+                <div class="article-image">
+                    <!-- Image space 7 -->
+                    <img src="images/Margret Chola/4480.avif" alt="Margret and Diana together">
+                    <div class="image-caption"></div>
+                </div>
+                
+                <p>"People are glued to the granny series because Grandma's looks are unpredictable," Kaumba explains. "They can't wait to see what she's going to show up in next."</p>
+                
+                <p>What began as a playful intergenerational exchange has evolved into a powerful statement about self-reinvention at any age, proving that style knows no boundaries—not of age, geography, or expectation.</p>
+                
+                <div class="article-image">
+                    <!-- Image space 8 -->
+                    <img src="images/Margret Chola/ffd9fed0-a2bd-11ef-bdf5-b7cb2fa86e10.jpg.webp" alt="Margret Chola in pastel outfit">
+                    <div class="image-caption"></div>
+                </div>
+            </div>
+            
+            <div class="article-footer">
+                Source and Credit to the guardian, read more <a href="https://www.theguardian.com/global-development/2025/feb/03/zambia-style-granny-who-went-viral-margret-chola">here</a>
+            </div>
+        </article>
+        
+        <!-- Related Stories Section -->
+        <div class="related-stories">
+            <h2 class="related-heading">More Stories from ZedPad</h2>
+            
+            <div class="story-grid">
+                <div class="story-card">
+                    <h3>Lusaka Fashion Week Breaks Boundaries with Local Designers</h3>
+                    <p>Zambia's capital showcased its burgeoning fashion scene with a groundbreaking event that featured exclusively African designers and models, challenging Western beauty standards and celebrating authentic African aesthetics.</p>
+                    <a href="#" class="read-more">Continue Reading →</a>
+                </div>
+                
+                <div class="story-card">
+                    <h3>Upcycling Revolution: How Zambian Designers Are Transforming Secondhand Imports</h3>
+                    <p>Faced with limited access to new textiles, innovative designers in Lusaka's Kamwala market are creating high-fashion pieces entirely from reconstructed secondhand clothing, attracting international attention.</p>
+                    <a href="#" class="read-more">Continue Reading →</a>
+                </div>
+                
+                <div class="story-card">
+                    <h3>The Rise of African Print in Global Luxury Markets</h3>
+                    <p>From New York to Paris, traditional African prints are being embraced by luxury fashion houses. We examine the cultural implications and economic impact on African textile producers.</p>
+                    <a href="#" class="read-more">Continue Reading →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Site Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About ZedPad</h3>
+                <p>ZedPad is Zambia's premier blog site, giving you all the latest stories and the best of zambian heritage in the most well written and informative way</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <div class="footer-contact">
+                    <span><strong>Editor:</strong>John Mayembe</span>
+                    <span><strong>Email:</strong> jmayembe6@gmail.com</span>
+                    <span><strong>Phone:</strong> +260972324035</span>
+                    <span><strong>Address:</strong> Livingstone, Zambia</span>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <p>Follow ZedPad for the latest blogs in Zambian culture and lifestyle:</p>
+                <div class="footer-social">
+                    <a href="#">Instagram</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">YouTube</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 ZedPad Media. All rights reserved.| Bog Page by JM Web Designs</p>
+        </div>
+    </footer>
+</body>
+</html>
